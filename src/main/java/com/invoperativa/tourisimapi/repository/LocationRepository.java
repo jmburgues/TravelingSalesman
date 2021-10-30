@@ -1,10 +1,11 @@
 package com.invoperativa.tourisimapi.repository;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 
@@ -47,18 +48,17 @@ public class LocationRepository {
                     "San Juan",
                     createDistanceMap(new int[]{1436, 549, 1386, 165, 3393, 1111, 1141, 964, 323, 915, 0})));
 
-
     public Location getLocation(int locationId) {
         return this.locations.get(locationId);
     }
 
     public List<Location> getAllLocations() {
         List<Location> clonedList = new ArrayList<>();
-        for(Location location : this.locations) {
+        for (Location location : this.locations) {
             clonedList.add(
                     new Location(location.getId(),
-                    location.getName(),
-                    cloneDistances(location.getDistances())
+                            location.getName(),
+                            cloneDistances(location.getDistances())
                     ));
         }
         return clonedList;
@@ -66,12 +66,12 @@ public class LocationRepository {
 
     // Clones the repository by value instead of by reference,
     // so different calls to the API do not modify original distances.
-    private Map<Integer, Integer> cloneDistances(Map<Integer, Integer> originalMap){
+    private Map<Integer, Integer> cloneDistances(Map<Integer, Integer> originalMap) {
         Map<Integer, Integer> newMap = new HashMap<>();
-        for (Map.Entry<Integer, Integer> entry : originalMap.entrySet()){
+        for (Map.Entry<Integer, Integer> entry : originalMap.entrySet()) {
             int key = entry.getKey();
             int value = entry.getValue();
-            newMap.put(key,value);
+            newMap.put(key, value);
         }
         return newMap;
     }

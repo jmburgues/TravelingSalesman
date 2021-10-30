@@ -2,8 +2,10 @@ package com.invoperativa.tourisimapi.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -22,11 +24,19 @@ public class LocationService {
     * Generates a Map for each location where KEY is locationId and VALUE is a map of distances to other locations.
      */
 
+    public Set<Integer> getSupportedIds() {
+        Set<Integer> supportedIds = new HashSet<>();
+        for(Location location : this.locationRepository.getAllLocations()) {
+            supportedIds.add(location.getId());
+        }
+        return supportedIds;
+    }
+
     public Location getLocation(Integer locationId) {
         return locationRepository.getLocation(locationId);
     }
 
-    public Map<Integer, Location> getLocations(List<Integer> wantedIds) {
+    public Map<Integer, Location> getLocations(Set<Integer> wantedIds) {
         Map<Integer, Location> wantedLocations = new HashMap<>();
         List<Location> originalLocations = locationRepository.getAllLocations();
         for(Integer locationId : wantedIds) {
@@ -38,7 +48,7 @@ public class LocationService {
         return wantedLocations;
     }
 
-    private Map<Integer,Integer> adecuateDistances(Map<Integer, Integer> distances, List<Integer> wantedIds){
+    private Map<Integer,Integer> adecuateDistances(Map<Integer, Integer> distances, Set<Integer> wantedIds){
         Map<Integer,Integer> newDistances=new HashMap<>();
         for (Integer location : wantedIds){
             newDistances.put(location,distances.get(location));
