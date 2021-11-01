@@ -40,7 +40,7 @@ public class LocationRepository {
                     createDistanceMap(new int[]{979, 1113, 422, 799, 2462, 1968, 1998, 0, 774, 1162, 964})),
             new Location(8,
                     "San Luis",
-                    createDistanceMap(new int[]{1113, 406, 1196, 259, 3070, 1152, 1182, 774, 0, 592, 11})),
+                    createDistanceMap(new int[]{1113, 406, 1196, 259, 3070, 1152, 1182, 774, 0, 592, 323})),
             new Location(9,
                     "Rosario",
                     createDistanceMap(new int[]{751, 434, 1584, 851, 3161, 1215, 1245, 1162, 592, 0, 915})),
