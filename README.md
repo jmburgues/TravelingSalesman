@@ -30,23 +30,21 @@ This endpoint allows to send a list of supported locations IDs to route.
 
 ## Body Example
 ```
-{
-    1,
-    2,
-    4,
-    10,
-    7
-}
+[7,8,9,10]
 ```
 
 ## Response Example
 ```
 {
-    1,
-    2,
-    4,
-    10,
-    7
+    "locations": [
+        "Mar del Plata",
+        "Neuquen",
+        "San Juan",
+        "San Luis",
+        "Rosario",
+        "Mar del Plata"
+    ],
+    "totalDistance": 3609
 }
 ```
 
